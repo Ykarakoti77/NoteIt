@@ -17,7 +17,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 
 export const SideNav = () => {
-  const drawerWidth = 260;
+  const drawerWidth = 280;
 
   const [open, setOpen] = useState(true);
 
@@ -53,7 +53,8 @@ export const SideNav = () => {
             alignItems: "center",
             width: 220,
             alignSelf:"center",
-            marginBottom:"20px"
+            marginBottom:"20px",
+            bgcolor:'#F5F5F5'
           }}
         >
     
