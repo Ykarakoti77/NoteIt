@@ -1,13 +1,17 @@
-import { Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import React from "react";
+// import { Typography } from "@mui/material";
+// import { Box } from "@mui/system";
+// import React, { useContext } from "react";
+// import { UserContext } from "../context/ContextProvider";
 
-export const OrganicChemistry = () => {
-  return <Box>
-    <Typography
-    variant="h4"
-    >
-        This is the content of Notes
-    </Typography>
-  </Box>;
-};
+// export const OrganicChemistry = () => {
+//     const { initialNotes } = useContext(UserContext)
+
+//     const note = initialNotes.map((initial) => <Typography variant="h5">{initial.noteText}</Typography>)
+
+//   return <Box>
+//     {note}
+//   </Box>
+// };
+
+
+// Not required now

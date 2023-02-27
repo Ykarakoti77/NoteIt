@@ -1,21 +1,17 @@
 import { Box } from '@mui/system';
 import { SideNav } from './component/SideNav';
 // import { Home } from './component/Home';
-import { OrganicChemistry } from './component/OrganicChemistry';
-import { Route, Routes } from 'react-router-dom';
-import { Home } from './component/Home';
+import { ContextProvider } from './context/ContextProvider';
+import { Routing } from './Routing/Routing';
 
 function App() {
   return (
-    <>
+    <ContextProvider>
     <Box sx={{display: 'flex'}}>
       <SideNav />
-      <Routes>
-        <Route path='/home' element={<Home />} />
-        <Route path='/Notes' element={<OrganicChemistry />} />
-      </Routes>
+      <Routing />  
     </Box>
-    </>
+    </ContextProvider>
   );
 }
 
