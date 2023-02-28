@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
+import AddIcon from "@mui/icons-material/Add";
 import {
   Collapse,
-  Divider,
   Drawer,
   IconButton,
   InputBase,
@@ -17,10 +17,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/ContextProvider";
+import { Box } from "@mui/system";
+import { CreateNoteDialog } from "./CreateNoteDialog";
 
 export const SideNav = () => {
   const drawerWidth = 280;
-
   const [open, setOpen] = useState(true);
 
   const handleClick = () => {
@@ -30,8 +31,8 @@ export const SideNav = () => {
   const { initialNotes } = useContext(UserContext);
   console.log(initialNotes);
 
-  const style={textDecoration:'none', color:'black'}
-  
+  const style = { textDecoration: "none", color: "black" };
+
   return (
     <>
       <Drawer
@@ -46,9 +47,13 @@ export const SideNav = () => {
         variant="permanent"
         anchor="left"
       >
-        <Typography variant="h3" align="center" padding={4}>
-          NoteIt
-        </Typography>
+        <Box
+          sx={{ bgcolor: "inherit", position: "sticky", top: "0", zIndex: 3 }}
+        >
+          <Typography variant="h3" align="center" padding={2}>
+            NoteIt
+          </Typography>
+        </Box>
 
         <Paper
           component="form"
@@ -60,7 +65,7 @@ export const SideNav = () => {
             alignItems: "center",
             width: 220,
             alignSelf: "center",
-            marginBottom: "20px",
+            marginBottom: "10px",
             bgcolor: "#F5F5F5",
           }}
         >
@@ -73,16 +78,15 @@ export const SideNav = () => {
             <SearchIcon />
           </IconButton>
         </Paper>
-
         <List>
-          <Link to={'./Home'} style={style}>
+          <Link to={"./Home"} style={style}>
             <ListItemButton>
-            <ListItemText primary="Home"></ListItemText>
+              <ListItemText primary="Home"></ListItemText>
             </ListItemButton>
           </Link>
-          <Link to={'./Home'} style={style}>
+          <Link to={"./Home"} style={style}>
             <ListItemButton>
-            <ListItemText primary="Notification"></ListItemText>
+              <ListItemText primary="Notification"></ListItemText>
             </ListItemButton>
           </Link>
 
@@ -91,28 +95,18 @@ export const SideNav = () => {
             {open ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
           <Collapse in={open} timeout="auto" unmountOnExit>
-
             {initialNotes.map((GoodNote) => (
-              
-                  <Link to={`/Notes/${GoodNote.id}`} style={style}>
-                <ListItemButton sx={{ pl: 4}}>
-                    <ListItemText primary={GoodNote.heading} />
+              <Link to={`/Notes/${GoodNote.id}`} style={style}>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemText primary={GoodNote.heading} />
                 </ListItemButton>
-                  </Link>
-              
+              </Link>
             ))}
-
           </Collapse>
-
-          {["Tips", "Trash"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
         </List>
-        <Divider />
+        <ListItem sx={{ position: "sticky", bottom: 0, bgcolor: "inherit" }}>
+          <CreateNoteDialog />
+        </ListItem>
       </Drawer>
     </>
   );

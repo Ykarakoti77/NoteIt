@@ -10,6 +10,7 @@ function App() {
     <Box sx={{display: 'flex'}}>
       <SideNav />
       <Routing />  
+
     </Box>
     </ContextProvider>
   );
