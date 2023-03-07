@@ -41,14 +41,11 @@ const notesData = [
 ]
 
 export const ContextProvider = ({children}) => {
-  const [newNote, setNote] = useState("");
   const [heading, setHeading] = useState("");
   const [initialNotes, setInitialNotes] = useState(notesData);
   const value = {
     initialNotes,
     setInitialNotes,
-    newNote,
-    setNote,
     heading,
     setHeading   
   }
