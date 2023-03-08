@@ -6,11 +6,17 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { UserContext } from "../context/ContextProvider";
+import { addDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 export const CreateNoteDialog = () => {
   const [open, setOpen] = React.useState(false);
-  const { heading, setHeading, initialNotes, setInitialNotes } =
-    React.useContext(UserContext);
+  const {
+    heading,
+    setHeading,
+    notesCollectionRef,
+    getNotesList
+  } = React.useContext(UserContext);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -19,15 +25,17 @@ export const CreateNoteDialog = () => {
   const handleClose = () => {
     setOpen(false);
   };
-
-  const createNote = () => {
+  const navigate = useNavigate()
+  const createNote = async () => {
     handleClose();
-    setInitialNotes((initialNotes) => [
-      ...initialNotes,
-      { id: heading, heading: heading, para: "" },
-    ]);
-    console.log(initialNotes);
-    setHeading("")
+    try {
+      const docRef = await addDoc(notesCollectionRef, { id: "", heading: heading, para: "" });
+      getNotesList()
+      setHeading("")
+      navigate(`/client/Notes/${docRef.id}`)
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div>
