@@ -1,7 +1,6 @@
 import { collection, getDocs } from "@firebase/firestore";
 import { db } from "../firebase-config";
 import React, { createContext, useEffect, useState } from "react";
-import { addDoc } from "@firebase/firestore";
 
 
 export const UserContext = createContext(null);
