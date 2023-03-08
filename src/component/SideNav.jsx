@@ -23,6 +23,7 @@ import { Logout } from "./Logout";
 import { AuthContext } from "../context/AuthContext";
 
 export const SideNav = () => {
+  
   const drawerWidth = 280;
   const [open, setOpen] = useState(true);
 
