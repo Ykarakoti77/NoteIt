@@ -31,10 +31,8 @@ export const SideNav = () => {
     setOpen(!open);
   };
   const { currentUser } = useContext(AuthContext)
-  const { initialNotes } = useContext(UserContext);
-
-  const email = currentUser?.email
-  
+  const { initialNotes, getNotesList } = useContext(UserContext);
+  const email = currentUser?.email  
 
   const style = { textDecoration: "none", color: "black" };
   return (

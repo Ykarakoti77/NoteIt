@@ -11,7 +11,6 @@ export const Note = (props) => {
       initialNotes,
       setInitialNotes
     } = useContext(UserContext)
-    console.log(initialNotes)
     const [newNote, setNote] = useState(initialNotes.para);
     const { id } = useParams()
     let ind = 0;
