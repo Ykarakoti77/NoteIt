@@ -1,7 +1,6 @@
 import { collection, getDocs } from "@firebase/firestore";
 import { db } from "../firebase-config";
 import React, { createContext, useEffect, useState } from "react";
-import { addDoc } from "@firebase/firestore";
 
 
 export const UserContext = createContext(null);
@@ -9,20 +8,19 @@ export const UserContext = createContext(null);
 export const ContextProvider = ({ children }) => {
   const [initialNotes, setInitialNotes] = useState([]);
   const notesCollectionRef = collection(db, "Notes");
-
+  const getNotesList = async () => {
+    try {
+      const data = await getDocs(notesCollectionRef);
+      const filteredData = data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setInitialNotes(filteredData);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   useEffect(() => {
-    const getNotesList = async () => {
-      try {
-        const data = await getDocs(notesCollectionRef);
-        const filteredData = data.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }));
-        setInitialNotes(filteredData);
-      } catch (err) {
-        console.log(err);
-      }
-    };
     getNotesList();
   }, []);
 
@@ -32,6 +30,8 @@ export const ContextProvider = ({ children }) => {
     setInitialNotes,
     heading,
     setHeading,
+    notesCollectionRef, 
+    getNotesList
   };
 
   return (
