@@ -3,9 +3,14 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import { Box, Button } from "@mui/material";
 import NoteTaking from '../Images/takingnotes.jpg'
-import Notes2 from '../Images/notes2.jpg'
+import { useNavigate } from "react-router-dom";
 
 export const Content = () => {
+    const navigate = useNavigate();
+    const handleClick = () => {
+        navigate('/signUp')
+    }
+
   return (
     <>
     <Box sx={{display:'flex', justifyContent:'space-between', padding:'80px'}}>
@@ -29,7 +34,7 @@ export const Content = () => {
             Capture your thoughts, anytime, anywhere
           </Typography>
 
-          <Button variant="outlined" color="success" size='large' sx={{marginTop:'25px', fontSize:'1.5rem'}}>
+          <Button variant="outlined" color="success" size='large' sx={{marginTop:'25px', fontSize:'1.5rem'}} onClick={handleClick}>
             Sign Up            
           </Button>
         </Box>

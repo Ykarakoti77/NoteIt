@@ -45,7 +45,7 @@ export const SignIn = () => {
       setLoading(true)
       await signin(email, password)
       setSuccess(true)
-      navigate("/client")
+      navigate("/client/Home")
     }catch {
       setError('Failed to Sign In')
       setSuccess(false)
@@ -57,7 +57,7 @@ export const SignIn = () => {
   const googleSignIn = async () => {
     try{
       await signInWithGoogle()
-      navigate('/client')
+      navigate('/client/Home')
     }
     catch(error){
       console.log(error)

@@ -4,8 +4,19 @@ import React from "react";
 import Button from "@mui/material/Button";
 import { AppBar } from "@mui/material";
 import Logo from '../Images/notes.png'
+import { useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
+
+    const navigate = useNavigate()
+
+    const handleSignUp = () => {
+        navigate('/signUp')
+    }
+    const handleLogin = () => {
+        navigate('/signIn')
+    }
+
   return (
     <AppBar
       sx={{
@@ -35,10 +46,10 @@ export const Navbar = () => {
       </Typography>
       </Container>
       <Box sx={{display:'flex', flexDirection:'row'}}>
-        <Button variant="text" color="success" sx={{margin:'10px'}}>
-          Login
+        <Button variant="text" color="success" sx={{margin:'10px'}} onClick={handleLogin}>
+          Sign In
         </Button>
-        <Button variant="outlined" color="success" sx={{margin:'10px'}}>
+        <Button variant="outlined" color="success" sx={{margin:'10px'}} onClick={handleSignUp}>
           SignUp
         </Button>
       </Box>

@@ -54,7 +54,7 @@ export const SignUp = () => {
   const googleSignIn = async () => {
     try{
       await signInWithGoogle()
-      navigate('/client')
+      navigate('/client/Home')
     }
     catch(error){
       console.log(error)
