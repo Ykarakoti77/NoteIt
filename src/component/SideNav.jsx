@@ -93,8 +93,8 @@ export const SideNav = () => {
             {open ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
           <Collapse in={open} timeout="auto" unmountOnExit>
-            {initialNotes.map((GoodNote) => (
-              <Link to={`/client/Notes/${GoodNote.id}`} style={style}>
+            {initialNotes.map((GoodNote, index) => (
+              <Link to={`/client/Notes/${GoodNote.id}`} style={style} key={index} >
                 <ListItemButton sx={{ pl: 4 }}>
                   <ListItemText primary={GoodNote.heading} />
                 </ListItemButton>
