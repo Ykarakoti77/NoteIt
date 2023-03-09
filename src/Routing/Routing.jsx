@@ -5,7 +5,6 @@ import { Note } from "../component/Note";
 import { Dashboard } from "../component/Dashboard";
 import { SignIn } from "../component/SignIn";
 import { SignUp } from "../component/SignUp";
-import { SideNav } from "../component/SideNav";
 import { Client } from "../component/Client";
 
 export const Routing = () => {
