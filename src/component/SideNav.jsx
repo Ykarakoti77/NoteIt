@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 
 import {
+  Button,
   Collapse,
   Container,
   Drawer,
@@ -21,7 +22,6 @@ import { Box } from "@mui/system";
 import { CreateNoteDialog } from "./CreateNoteDialog";
 import { Logout } from "./Logout";
 import { AuthContext } from "../context/AuthContext";
-
 export const SideNav = () => {
   
   const drawerWidth = 280;
@@ -31,10 +31,11 @@ export const SideNav = () => {
     setOpen(!open);
   };
   const { currentUser } = useContext(AuthContext)
-  const { initialNotes, getNotesList } = useContext(UserContext);
+  const { initialNotes } = useContext(UserContext);
   const email = currentUser?.email  
 
   const style = { textDecoration: "none", color: "black" };
+
   return (
     <Box>
       <Drawer
