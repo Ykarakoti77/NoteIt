@@ -22,17 +22,17 @@ import { Box } from "@mui/system";
 import { CreateNoteDialog } from "./CreateNoteDialog";
 import { Logout } from "./Logout";
 import { AuthContext } from "../context/AuthContext";
+import { Settings } from "./Settings";
 export const SideNav = () => {
-  
   const drawerWidth = 280;
   const [open, setOpen] = useState(true);
 
   const handleClick = () => {
     setOpen(!open);
   };
-  const { currentUser } = useContext(AuthContext)
+  const { currentUser } = useContext(AuthContext);
   const { initialNotes } = useContext(UserContext);
-  const email = currentUser?.email  
+  const email = currentUser?.email;
 
   const style = { textDecoration: "none", color: "black" };
 
@@ -49,11 +49,16 @@ export const SideNav = () => {
         }}
         variant="permanent"
         anchor="left"
-        >
-        {email}
-        <Box
+      >
+         <Box
           sx={{ bgcolor: "inherit", position: "sticky", top: "0", zIndex: 3 }}
         >
+        <Box sx={{
+          ml:'auto'
+        }}>
+          <Settings />
+        </Box>
+       
           <Typography variant="h3" align="center" padding={2}>
             NoteIt
           </Typography>
@@ -94,7 +99,11 @@ export const SideNav = () => {
           </ListItemButton>
           <Collapse in={open} timeout="auto" unmountOnExit>
             {initialNotes.map((GoodNote, index) => (
-              <Link to={`/client/Notes/${GoodNote.id}`} style={style} key={index} >
+              <Link
+                to={`/client/Notes/${GoodNote.id}`}
+                style={style}
+                key={index}
+              >
                 <ListItemButton sx={{ pl: 4 }}>
                   <ListItemText primary={GoodNote.heading} />
                 </ListItemButton>
@@ -103,10 +112,18 @@ export const SideNav = () => {
           </Collapse>
         </List>
 
-        
-        <Container sx={{ position: "sticky", bottom: 0, bgcolor: "inherit", display:'flex', justifyContent:'space-between', padding:'10px'}}>
-          <Logout />
-          <CreateNoteDialog />
+        <Container
+          sx={{
+            position: "sticky",
+            bottom: 0,
+            bgcolor: "inherit",
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "10px",
+            ml:'auto'
+          }}
+        >
+        <CreateNoteDialog />
         </Container>
       </Drawer>
     </Box>

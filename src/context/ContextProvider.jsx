@@ -10,7 +10,8 @@ export const ContextProvider = ({ children }) => {
   const [initialNotes, setInitialNotes] = useState([]);
   const notesCollectionRef = collection(db, "Notes");
   const { currentUser } = useContext(AuthContext)
-  
+  const [name, setName] = useState();
+
   const getNotesList = async () => {
     console.log()
     try {

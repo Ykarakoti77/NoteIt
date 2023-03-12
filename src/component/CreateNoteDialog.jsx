@@ -41,7 +41,7 @@ export const CreateNoteDialog = () => {
   };
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button variant="contained" onClick={handleClickOpen}>
         New Note
       </Button>
       <Dialog open={open} onClose={handleClose}>

@@ -15,7 +15,6 @@ export const Logout = () => {
             await logout()
             navigate('/signIn')
             setInitialNotes([])
-            console.log('still works')
         }
         catch(e){
             console.log(e)
