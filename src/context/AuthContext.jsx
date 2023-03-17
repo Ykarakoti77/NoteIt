@@ -30,6 +30,7 @@ export const AuthContext = React.createContext()
     useEffect(() => {
         onAuthStateChanged(auth, user => {
             setCurrentUser(user)
+            console.log(user)
         }
         , []) 
     })
