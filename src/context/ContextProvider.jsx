@@ -11,6 +11,7 @@ export const ContextProvider = ({ children }) => {
   const notesCollectionRef = collection(db, "Notes");
   const { currentUser } = useContext(AuthContext)
   const [name, setName] = useState();
+  const [filteredInitialNotes, setFilteredInitialNotes] = useState([]);
 
   const getNotesList = async () => {
     console.log()
@@ -44,6 +45,8 @@ export const ContextProvider = ({ children }) => {
     setHeading,
     notesCollectionRef,
     getNotesList,
+    filteredInitialNotes, 
+    setFilteredInitialNotes,
   };
 
   return (

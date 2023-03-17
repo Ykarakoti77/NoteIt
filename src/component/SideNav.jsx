@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-
+import { SearchBar } from "./SearchBar";
 import {
   Button,
   Collapse,
@@ -13,7 +13,6 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { Link } from "react-router-dom";
@@ -30,10 +29,7 @@ export const SideNav = () => {
   const handleClick = () => {
     setOpen(!open);
   };
-  const { currentUser } = useContext(AuthContext);
-  const { initialNotes } = useContext(UserContext);
-  const email = currentUser?.email;
-
+  const { initialNotes, filteredInitialNotes } = useContext(UserContext);
   const style = { textDecoration: "none", color: "black" };
 
   return (
@@ -64,29 +60,7 @@ export const SideNav = () => {
           </Typography>
         </Box>
 
-        <Paper
-          component="form"
-          sx={{
-            border: "none",
-            boxShadow: "1",
-            p: "2px 4px",
-            display: "flex",
-            alignItems: "center",
-            width: 220,
-            alignSelf: "center",
-            marginBottom: "10px",
-            bgcolor: "#F5F5F5",
-          }}
-        >
-          <InputBase
-            sx={{ ml: 1, flex: 1 }}
-            placeholder="Search Notes"
-            inputProps={{ "aria-label": "Search Notes" }}
-          />
-          <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
-            <SearchIcon />
-          </IconButton>
-        </Paper>
+        <SearchBar />
         <List>
           <Link to={"/client/Home"} style={style}>
             <ListItemButton>
@@ -98,7 +72,7 @@ export const SideNav = () => {
             {open ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
           <Collapse in={open} timeout="auto" unmountOnExit>
-            {initialNotes.map((GoodNote, index) => (
+            {filteredInitialNotes.map((GoodNote, index) => (
               <Link
                 to={`/client/Notes/${GoodNote.id}`}
                 style={style}
