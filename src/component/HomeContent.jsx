@@ -1,6 +1,7 @@
-import { Card, Tab, Tabs, Typography } from "@mui/material";
+import { Card, List, Tab, Tabs, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
+import { Favourites } from "./Favourites";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -14,13 +15,14 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <List sx={{ p: 3 }}>
           <Typography>{children}</Typography>
-        </Box>
+        </List>
       )}
     </div>
   );
 }
+
 
 export const HomeContent = () => {
   const [value, setValue] = React.useState(0);
@@ -29,27 +31,33 @@ export const HomeContent = () => {
     setValue(newValue);
   };
   return (
-    <Card
-      sx={{
-        width: "95%",
-        position: "absolute",
-        top: "54%",
-        height: "44%",
-      }}
+    <Box
+    sx={{
+      width: "95%",
+      position: "absolute",
+      top: "54%",
+      height: "44%",
+    }}
     >
+
+    <Card
+       sx={
+        {height:'100%'}
+       }
+      >
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
-        >
-          <Tab label="Item One" />
+          >
+          <Tab variant label="Favourites" />
           <Tab label="Item Two" />
           <Tab label="Item Three" />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        Item One
+        <Favourites />
       </TabPanel>
       <TabPanel value={value} index={1}>
         Item Two
@@ -58,5 +66,6 @@ export const HomeContent = () => {
         Item Three
       </TabPanel>
     </Card>
+    </Box>
   );
 };

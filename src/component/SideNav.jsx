@@ -13,24 +13,45 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
+import StarIcon from "@mui/icons-material/Star";
 
-import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import { ExpandLess, ExpandMore, Star } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/ContextProvider";
 import { Box } from "@mui/system";
 import { CreateNoteDialog } from "./CreateNoteDialog";
-import { Logout } from "./Logout";
-import { AuthContext } from "../context/AuthContext";
 import { Settings } from "./Settings";
+import { doc, setDoc} from "firebase/firestore";
+import { db } from "../firebase-config";
+
+
 export const SideNav = () => {
-  const drawerWidth = 280;
+  const drawerWidth = 350;
   const [open, setOpen] = useState(true);
 
   const handleClick = () => {
     setOpen(!open);
   };
-  const { initialNotes, filteredInitialNotes } = useContext(UserContext);
-  const style = { textDecoration: "none", color: "black" };
+  const { filteredInitialNotes, setFilteredInitialNotes } = useContext(UserContext);
+  const style = { textDecoration: "none", color: "black" };  
+  const star = <StarIcon fontSize="small" />;
+  const notstar = <StarBorderIcon fontSize="small" />;
+  const toggleFav = (id, fv) => {
+    const docRef = doc(db, "Notes", id);
+    setDoc(docRef, { fav: !fv}, { merge: true });
+    let ind = 0;
+    for (let i = 0; i < filteredInitialNotes.length; i++) {
+      if (filteredInitialNotes[i].id === id) {
+        ind = i;
+        break;
+      }
+    }
+    const tempNotes = [...filteredInitialNotes];
+    tempNotes[ind].fav = !fv;
+    setFilteredInitialNotes(tempNotes); 
+    console.log(fv) 
+  }
 
   return (
     <Box>
@@ -46,24 +67,34 @@ export const SideNav = () => {
         variant="permanent"
         anchor="left"
       >
-         <Box
-          sx={{ bgcolor: "inherit", position: "sticky", top: "0", zIndex: 3 }}
+        <Box
+          sx={{
+            bgcolor: "inherit",
+            // position: "sticky",
+            // top: "0",
+            // zIndex: 3,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
         >
-        <Box sx={{
-          ml:'auto'
-        }}>
-          <Settings />
-        </Box>
-       
+          <Box
+            sx={{
+              ml: "auto",
+            }}
+          >
+            <Settings />
+          </Box>
+
           <Typography variant="h3" align="center" padding={2}>
             NoteIt
           </Typography>
+          <SearchBar />
         </Box>
 
-        <SearchBar />
         <List>
           <Link to={"/client/Home"} style={style}>
-            <ListItemButton>
+            <ListItemButton divider>
               <ListItemText primary="Home"></ListItemText>
             </ListItemButton>
           </Link>
@@ -72,32 +103,44 @@ export const SideNav = () => {
             {open ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
           <Collapse in={open} timeout="auto" unmountOnExit>
-            {filteredInitialNotes.map((GoodNote, index) => (
-              <Link
-                to={`/client/Notes/${GoodNote.id}`}
-                style={style}
-                key={index}
-              >
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary={GoodNote.heading} />
-                </ListItemButton>
-              </Link>
-            ))}
+              <List>
+                {filteredInitialNotes.map((GoodNote, index) => (
+                  <Link
+                    to={`/client/Notes/${GoodNote.id}`}
+                    style={style}
+                    key={index}
+                  >
+                    <Container sx={{ display: "flex" }}>
+                      <ListItemButton divider
+                        sx={{ pl: 0, pr: 0, pt: "3px", pb: "3px" }}
+                      >
+                        <ListItemText primary={GoodNote.heading} />
+                      <Button variant="text" color="primary" sx={{ p: "2px"}} onClick={() => toggleFav(GoodNote.id, GoodNote.fav)}>
+                        {GoodNote.fav ? star : notstar}
+                      </Button>
+                      </ListItemButton>
+                    </Container>
+                  </Link>
+                )
+                )
+                }
+              </List>
           </Collapse>
         </List>
-
+        <hr />
         <Container
           sx={{
             position: "sticky",
             bottom: 0,
-            bgcolor: "inherit",
+            bgcolor: "primary",
             display: "flex",
-            justifyContent: "space-between",
+            alignItems:'center',
+            justifyContent: "space-around",
             padding: "10px",
-            ml:'auto'
+            ml: "auto",
           }}
         >
-        <CreateNoteDialog />
+          <CreateNoteDialog />
         </Container>
       </Drawer>
     </Box>
