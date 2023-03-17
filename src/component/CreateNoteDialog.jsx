@@ -31,7 +31,7 @@ export const CreateNoteDialog = () => {
   const createNote = async () => {
     handleClose();
     try {
-      const docRef = await addDoc(notesCollectionRef, { id: "", heading: heading, para: "", user: currentUser.uid });
+      const docRef = await addDoc(notesCollectionRef, { id: "", heading: heading, para: "", user: currentUser.uid, fav: false });
       getNotesList()
       setHeading("")
       navigate(`/client/Notes/${docRef.id}`)

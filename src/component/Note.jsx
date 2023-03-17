@@ -66,7 +66,7 @@ export const Note = (props) => {
       <TextField
         sx={{ width: "100%" }}
         multiline="true"
-        minRows="22"
+        minRows="24"
         id={newNote}
         label="text"
         value={para}

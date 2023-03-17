@@ -25,6 +25,17 @@ export const ContextProvider = ({ children }) => {
         if(userData.hasOwnProperty('user') && userData.user === currentUser.uid) return true;
         return false
       })
+      filteredData.sort((a, b) => {
+        let fa = a.heading.toLowerCase(),
+            fb = b.heading.toLowerCase();
+        if (fa < fb) {
+            return -1;
+        }
+        if (fa > fb) {
+            return 1;
+        }
+        return 0;
+    });
       setInitialNotes(filteredData);
     } catch (err) {
       console.log(err);
