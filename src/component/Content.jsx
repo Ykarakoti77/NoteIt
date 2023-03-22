@@ -13,9 +13,9 @@ export const Content = () => {
 
   return (
     <>
-    <Box sx={{display:'flex', justifyContent:'space-between', padding:'80px'}}>
+    <Box sx={{display:'flex', justifyContent:'space-between', padding:'80px', mt:'3rem'}}>
 
-      <Box sx={{paddingLeft:'40px'}}>
+      <Box sx={{paddingLeft:'3rem'}}>
         <Typography variant="h2" color="initial" sx={{ paddingBottom: "20px" }}>
           All your notes
         </Typography>
