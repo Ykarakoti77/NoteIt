@@ -26,10 +26,9 @@ import { Settings } from "./Settings";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase-config";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import AddIcon from '@mui/icons-material/Add';
 
 export const SideNav = () => {
-  const isSmallScreen = useMediaQuery("(max-width:600px)");
+  const isSmallScreen = useMediaQuery("(max-width:1000px)");
   const drawerWidth = 350;
   const [open, setOpen] = useState(true);
   const [dopen, setDOpen] = useState(false);
@@ -121,7 +120,7 @@ export const SideNav = () => {
 
         <List>
           <Link to={"/client/Home"} style={style}>
-            <ListItemButton divider>
+            <ListItemButton divider onClick={handleDrawerClose}>
               <ListItemText primary="Home"></ListItemText>
             </ListItemButton>
           </Link>
@@ -139,6 +138,7 @@ export const SideNav = () => {
                 >
                   <Container sx={{ display: "flex" }}>
                     <ListItemButton
+                      onClick={handleDrawerClose}
                       divider
                       sx={{ pl: 0, pr: 0, pt: "3px", pb: "3px" }}
                     >
@@ -171,7 +171,9 @@ export const SideNav = () => {
             ml: "auto",
           }}
         >
+          <Button>
           <CreateNoteDialog />
+          </Button>
         </Container>
       </Drawer>
     </Box>

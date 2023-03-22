@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
 import { UserContext } from "../context/ContextProvider";
 import {
+  Box,
   Button,
   Container,
   List,
   ListItemButton,
   ListItemText,
   Paper,
+  Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { doc, setDoc } from "firebase/firestore";
@@ -40,8 +42,13 @@ export const Favourites = () => {
   const star = <StarIcon fontSize="small" />;
   const notstar = <StarBorderIcon fontSize="small" />;
   return (
-    <>
-      {/* <Paper style={{ maxHeight: '250px', overflow: "auto" }}> */}
+    <Box
+    sx={{
+      boxShadow: "rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px",
+      p:'1.3rem',
+    }}>
+        <Typography variant="h5" sx={{
+        }}> Favourites</Typography>
         <List style={{height: '250px', p:'10px', overflow: 'auto'}}>
           {favourite.map((GoodNote, index) => (
             <Container
@@ -55,7 +62,7 @@ export const Favourites = () => {
                 <Container sx={{ display: "flex" }}>
                   <ListItemButton
                     divider
-                    sx={{ pl: 0, pr: 0, pt: "3px", pb: "3px" }}
+                    // sx={{ pl: 0, pr: 0, pt: "3px", pb: "3px" }}
                   >
                     <ListItemText primary={GoodNote.heading} />
                   </ListItemButton>
@@ -73,6 +80,6 @@ export const Favourites = () => {
           ))}
         </List>
       {/* </Paper> */}
-    </>
+    </Box>
   );
 };
