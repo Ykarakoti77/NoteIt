@@ -20,22 +20,25 @@ export const Navbar = () => {
   return (
     <AppBar
       sx={{
-        position:'sticky',
+        width:'100%',
         display: "flex",
         justifyContent: "space-between",
         flexDirection: "row",
-        padding:'5px',
+        padding:'0.2rem',
+        pr:'1rem',
+        pl:'1rem',
+        background:'white'
       }}
       color="transparent"
     >
     <Container sx={{display:'flex', alignItems:'center'}}>
       <img src={Logo} alt="Logo" height='50px'/>
       <Typography
-        noWrap
+      noWrap
         variant="h3"
         color="initial"
         sx={{
-          display: { xs: "none", md: "flex" },
+          display: { xs: "flex", md: "flex" },
           fontWeight: 500,
           color: "inherit",
           margin :'5px',
