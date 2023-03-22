@@ -3,7 +3,6 @@ import React from "react";
 import { GreetingCard } from "./GreetingCard";
 import { HomeContent } from "./HomeContent";
 import { QuickTips } from "./QuickTips";
-import { Ngreet } from "./Ngreet";
 import backgroundImg from "../Images/backgroundImg.jpg";
 import { Favourites } from "./Favourites";
 
