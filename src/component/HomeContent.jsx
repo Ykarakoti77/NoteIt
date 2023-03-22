@@ -34,9 +34,6 @@ export const HomeContent = () => {
     <Box
     sx={{
       width: "95%",
-      position: "absolute",
-      top: "54%",
-      height: "44%",
     }}
     >
 
