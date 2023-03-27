@@ -21,7 +21,7 @@ export const Settings = () => {
   const handleLogOut = async () => {
     try {
       await logout();
-      navigate("/signIn");
+      navigate("/");
       setInitialNotes([]);
     } catch (e) {
       console.log(e);

@@ -13,7 +13,7 @@ export const Logout = () => {
         setError('')
         try{
             await logout()
-            navigate('/signIn')
+            navigate('/')
             setInitialNotes([])
         }
         catch(e){
