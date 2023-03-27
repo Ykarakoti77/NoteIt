@@ -54,7 +54,7 @@ export const GreetingCard = () => {
   }, []);
   console.log(currentUser?.displayName);
   return (
-    <Box sx={{color: "white", pl:"3rem", pt:'7rem', pb:'1rem' }}>
+    <Box sx={{color: "white", pl:"3rem", pt:'7rem', pb:'2rem' }}>
       <Typography variant="h4">
         {" "}
         {greeting} {currentUser?.displayName}{" "}

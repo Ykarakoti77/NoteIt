@@ -65,7 +65,7 @@ export const SideNav = () => {
   };
 
   return (
-    <Box>
+    <Box sx={{backgroundColor:'white'}}>
       <IconButton
         onClick={handleDrawerOpen}
         sx={{ ...(dopen && { display: "none" }) }}

@@ -25,8 +25,8 @@ export const Home = () => {
       }}
     >
       <GreetingCard />
-      <QuickTips />
       <Favourites />
+      <QuickTips />
       {/* <HomeContent /> */}
     </Box>
   ) ;
