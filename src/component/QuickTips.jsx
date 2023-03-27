@@ -28,7 +28,7 @@ export const QuickTips = () => {
       <Divider />
       <Grid container sx={{ p: "1rem" }}>
         {initialNotes.map((GoodNote, index) => (
-          <Grid item xs={12} sm={3} md={3} key={index}>
+          <Grid item xs={12} sm={6} md={3} key={index}>
             <Link to={`/client/Notes/${GoodNote.id}`} key={index} style={style}>
               <Paper
                 sx={{
