@@ -143,6 +143,7 @@ export const SideNav = () => {
                       sx={{ pl: 0, pr: 0, pt: "3px", pb: "3px" }}
                     >
                       <ListItemText primary={GoodNote.heading} />
+                    </ListItemButton>
                       <Button
                         variant="text"
                         color="primary"
@@ -151,7 +152,6 @@ export const SideNav = () => {
                       >
                         {GoodNote.fav ? star : notstar}
                       </Button>
-                    </ListItemButton>
                   </Container>
                 </Link>
               ))}
