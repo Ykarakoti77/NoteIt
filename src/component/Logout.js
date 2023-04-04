@@ -5,21 +5,25 @@ import { AuthContext } from "../context/AuthContext";
 import { UserContext } from "../context/ContextProvider";
 
 export const Logout = () => {
-    const [error, setError] = useState('');
-    const navigate = useNavigate();
-    const { logout } = useContext(AuthContext)
-    const { setInitialNotes } = useContext(UserContext)
-    const handleLogOut = async () => {
-        setError('')
-        try{
-            await logout()
-            navigate('/')
-            setInitialNotes([])
-        }
-        catch(e){
-            console.log(e)
-        }
+  const [setError] = useState("");
+  const navigate = useNavigate();
+  const { logout } = useContext(AuthContext);
+  const { setInitialNotes, setMode } = useContext(UserContext);
+  const handleLogOut = async () => {
+    setError("");
+    try {
+      await logout();
+      setMode("light");
+      navigate("/");
+      setInitialNotes([]);
+    } catch (e) {
+      console.log(e);
     }
-    
-  return <Button variant="contained" onClick={handleLogOut}>Logout</Button>;
+  };
+
+  return (
+    <Button variant="contained" onClick={handleLogOut}>
+      Logout
+    </Button>
+  );
 };
