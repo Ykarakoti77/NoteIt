@@ -26,18 +26,20 @@ import { Settings } from "./Settings";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase-config";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
 
 export const SideNav = () => {
   const isSmallScreen = useMediaQuery("(max-width:1000px)");
-  const drawerWidth = 350;
+  const drawerWidth = 300;
   const [open, setOpen] = useState(true);
   const [dopen, setDOpen] = useState(false);
   const handleClick = () => {
     setOpen(!open);
   };
-  const { filteredInitialNotes, setFilteredInitialNotes } =
+  const { filteredInitialNotes, setFilteredInitialNotes, mode, setMode } =
     useContext(UserContext);
-  const style = { textDecoration: "none", color: "black" };
+  const style = { textDecoration: "none" };
   const star = <StarIcon fontSize="small" />;
   const notstar = <StarBorderIcon fontSize="small" />;
   const toggleFav = (id, fv) => {
@@ -63,9 +65,12 @@ export const SideNav = () => {
   const handleDrawerClose = () => {
     setDOpen(false);
   };
-
+  const handleMode = () => {
+    if (mode === "light") setMode("dark");
+    else setMode("light");
+  };
   return (
-    <Box sx={{backgroundColor:'white'}}>
+    <Box>
       <IconButton
         onClick={handleDrawerOpen}
         sx={{ ...(dopen && { display: "none" }) }}
@@ -73,6 +78,9 @@ export const SideNav = () => {
         <MenuIcon />
       </IconButton>
       <Drawer
+        PaperProps={{
+          sx: { bgcolor: "background.primary" },
+        }}
         sx={{
           width: drawerWidth,
           flexShrink: 0,
@@ -87,10 +95,6 @@ export const SideNav = () => {
       >
         <Box
           sx={{
-            bgcolor: "inherit",
-            // position: "sticky",
-            // top: "0",
-            // zIndex: 3,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -98,12 +102,16 @@ export const SideNav = () => {
         >
           <Box
             sx={{
-              display:'flex',
-              justifyContent:'space-between',
-              width:'100%'
+              display: "flex",
+              justifyContent: "space-between",
+              width: "100%",
             }}
           >
             <Settings />
+            <Button onClick={handleMode}>
+              {mode === "light" ? <Brightness4Icon /> : <Brightness7Icon />}
+            </Button>
+
             <IconButton
               onClick={handleDrawerClose}
               sx={{ mr: 2, ...(!isSmallScreen && { display: "none" }) }}
@@ -112,7 +120,12 @@ export const SideNav = () => {
             </IconButton>
           </Box>
 
-          <Typography variant="h3" align="center" padding={2}>
+          <Typography
+            variant="h4"
+            align="center"
+            padding={1}
+            sx={{ mb: "0.25em", color: "text.primary" }}
+          >
             NoteIt
           </Typography>
           <SearchBar />
@@ -121,7 +134,10 @@ export const SideNav = () => {
         <List>
           <Link to={"/client/Home"} style={style}>
             <ListItemButton divider onClick={handleDrawerClose}>
-              <ListItemText primary="Home"></ListItemText>
+              <ListItemText
+                sx={{ color: "text.primary" }}
+                primary="Home"
+              ></ListItemText>
             </ListItemButton>
           </Link>
           <ListItemButton onClick={handleClick}>
@@ -140,40 +156,43 @@ export const SideNav = () => {
                     <ListItemButton
                       onClick={handleDrawerClose}
                       divider
-                      sx={{ pl: 0, pr: 0, pt: "3px", pb: "3px" }}
+                      sx={{ pl: 1, pr: 0 }}
                     >
-                      <ListItemText primary={GoodNote.heading} />
-                    </ListItemButton>
-                      <Button
-                        variant="text"
-                        color="primary"
-                        sx={{ p: "2px" }}
-                        onClick={() => toggleFav(GoodNote.id, GoodNote.fav)}
+                      {/* <ListItemText primary={GoodNote.heading} /> */}
+                      <Typography
+                        variant="p"
+                        style={style}
+                        sx={{ color: "text.primary" }}
                       >
-                        {GoodNote.fav ? star : notstar}
-                      </Button>
+                        {GoodNote.heading}
+                      </Typography>
+                    </ListItemButton>
+                    <Button
+                      variant="text"
+                      color="primary"
+                      sx={{ p: "1px" }}
+                      onClick={() => toggleFav(GoodNote.id, GoodNote.fav)}
+                    >
+                      {GoodNote.fav ? star : notstar}
+                    </Button>
                   </Container>
                 </Link>
               ))}
             </List>
           </Collapse>
         </List>
-        <hr />
         <Container
           sx={{
             position: "sticky",
             bottom: 0,
-            bgcolor: "primary",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-around",
-            padding: "10px",
+            pb: "0.5em",
             ml: "auto",
           }}
         >
-          <Button>
           <CreateNoteDialog />
-          </Button>
         </Container>
       </Drawer>
     </Box>

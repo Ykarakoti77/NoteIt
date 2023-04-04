@@ -17,12 +17,12 @@ export const QuickTips = () => {
       sx={{
         boxShadow:
           "rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px",
-        backgroundColor: "white",
+        backgroundColor: "background.primary",
         padding: "0.5rem",
-        mb:'2rem'
+        mb: "2rem",
       }}
     >
-      <Typography variant="h4" sx={{ p: "1rem" }}>
+      <Typography variant="h5" sx={{ pt: "1rem" }}>
         All Notes
       </Typography>
       <Divider />
@@ -32,17 +32,18 @@ export const QuickTips = () => {
             <Link to={`/client/Notes/${GoodNote.id}`} key={index} style={style}>
               <Paper
                 sx={{
+                  backgroundColor: "background.secondary",
                   textAlign: "center",
-                  m: "1rem",
-                  p: "1rem",
+                  m: "0.5rem",
+                  p: "0.5rem",
                   boxShadow:
                     " rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px",
                   ":hover": {
-                    backgroundColor: "#F5EBEB", // theme.shadows[20]
+                    backgroundColor: "background.hover",
                   },
                 }}
               >
-                <Typography variant="h5">{GoodNote.heading}</Typography>
+                <Typography variant="h6">{GoodNote.heading}</Typography>
               </Paper>
             </Link>
           </Grid>

@@ -13,13 +13,9 @@ import { AuthContext } from "../context/AuthContext";
 
 export const CreateNoteDialog = () => {
   const [open, setOpen] = React.useState(false);
-  const {
-    heading,
-    setHeading,
-    notesCollectionRef,
-    getNotesList
-  } = React.useContext(UserContext);
-  const { currentUser } = useContext(AuthContext)
+  const { heading, setHeading, notesCollectionRef, getNotesList } =
+    React.useContext(UserContext);
+  const { currentUser } = useContext(AuthContext);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -27,21 +23,31 @@ export const CreateNoteDialog = () => {
   const handleClose = () => {
     setOpen(false);
   };
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const createNote = async () => {
     handleClose();
     try {
-      const docRef = await addDoc(notesCollectionRef, { id: "", heading: heading, para: "", user: currentUser.uid, fav: false });
-      getNotesList()
-      setHeading("")
-      navigate(`/client/Notes/${docRef.id}`)
+      const docRef = await addDoc(notesCollectionRef, {
+        id: "",
+        heading: heading,
+        para: "",
+        user: currentUser.uid,
+        fav: false,
+      });
+      getNotesList();
+      setHeading("");
+      navigate(`/client/Notes/${docRef.id}`);
     } catch (err) {
       console.log(err);
     }
   };
   return (
     <div>
-      <Button variant="contained" onClick={handleClickOpen}>
+      <Button
+        variant="contained"
+        onClick={handleClickOpen}
+        sx={{ backgroundColor: "Background.primary" }}
+      >
         New Note
       </Button>
       <Dialog open={open} onClose={handleClose}>

@@ -44,44 +44,44 @@ export const Favourites = () => {
   const notstar = <StarBorderIcon fontSize="small" />;
   return (
     <Box
-    sx={{
-      boxShadow: "rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px",
-      p:'1.3rem',
-      backgroundColor:'white'
-    }}>
-        <Typography variant="h5" sx={{
-        }}> Favourites</Typography>
-        <Divider />
-        <List style={{height: '250px', p:'10px', overflow: 'auto'}}>
-          {favourite.map((GoodNote, index) => (
-            <Container
-              sx={{ display: "flex", justifyContent: "space-between" }}
+      sx={{
+        boxShadow:
+          "rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px",
+        p: "1.3rem",
+        backgroundColor: "background.primary",
+      }}
+    >
+      <Typography variant="h5"> Favourites</Typography>
+      <Divider />
+      <List style={{ height: "250px", p: "10px", overflow: "auto" }}>
+        {favourite.map((GoodNote, index) => (
+          <Container
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              borderBottom: "1px solid #D8D8D8",
+            }}
+          >
+            <Link to={`/client/Notes/${GoodNote.id}`} style={style} key={index}>
+              <Container sx={{ display: "flex" }}>
+                <ListItemButton>
+                  <ListItemText
+                    primary={GoodNote.heading}
+                    sx={{ color: "text.primary" }}
+                  />
+                </ListItemButton>
+              </Container>
+            </Link>
+            <Button
+              variant="text"
+              sx={{ p: "2px" }}
+              onClick={() => toggleFav(GoodNote.id, GoodNote.fav)}
             >
-              <Link
-                to={`/client/Notes/${GoodNote.id}`}
-                style={style}
-                key={index}
-              >
-                <Container sx={{ display: "flex" }}>
-                  <ListItemButton
-                    divider
-                    // sx={{ pl: 0, pr: 0, pt: "3px", pb: "3px" }}
-                  >
-                    <ListItemText primary={GoodNote.heading} />
-                  </ListItemButton>
-                </Container>
-              </Link>
-              <Button
-                variant="text"
-                color="primary"
-                sx={{ p: "2px" }}
-                onClick={() => toggleFav(GoodNote.id, GoodNote.fav)}
-              >
-                {GoodNote.fav ? star : notstar}
-              </Button>
-            </Container>
-          ))}
-        </List>
+              {GoodNote.fav ? star : notstar}
+            </Button>
+          </Container>
+        ))}
+      </List>
       {/* </Paper> */}
     </Box>
   );

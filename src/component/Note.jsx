@@ -3,13 +3,13 @@ import { Box } from "@mui/system";
 import React, { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../context/ContextProvider";
-import { doc, setDoc, deleteDoc} from "firebase/firestore";
+import { doc, setDoc, deleteDoc } from "firebase/firestore";
 import { db } from "../firebase-config";
-import DeleteIcon from '@mui/icons-material/Delete';
-
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export const Note = (props) => {
-  const { initialNotes, setInitialNotes, getNotesList } = useContext(UserContext);
+  const { initialNotes, setInitialNotes, getNotesList } =
+    useContext(UserContext);
   const [newNote, setNote] = useState(initialNotes.para);
   const { id } = useParams();
   let ind = 0;
@@ -35,15 +35,15 @@ export const Note = (props) => {
     // console.log(docRef)
   }
   const navigate = useNavigate();
-  const del = async (e) =>{
-    try{
-      await deleteDoc(doc(db, "Notes", id)); 
-      navigate('/client/home')
-      getNotesList()
-    }catch(err){
-      console.log(err)
+  const del = async (e) => {
+    try {
+      await deleteDoc(doc(db, "Notes", id));
+      navigate("/client/home");
+      getNotesList();
+    } catch (err) {
+      console.log(err);
     }
-  }
+  };
   return (
     <Box
       sx={{
@@ -51,9 +51,16 @@ export const Note = (props) => {
         padding: "40px",
         display: "flex",
         flexDirection: "column",
+        backgroundColor: "background.primary",
       }}
     >
-      <Container sx={{display:'flex', justifyContent:'space-between', alignItems:'center '}}>
+      <Container
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center ",
+        }}
+      >
         <Typography variant="h4" sx={{ paddingBottom: "20px" }}>
           {" "}
           {heading}{" "}
@@ -64,7 +71,7 @@ export const Note = (props) => {
       </Container>
 
       <TextField
-        sx={{ width: "100%" }}
+        sx={{ width: "100%", bgcolor: "background.secondary" }}
         multiline="true"
         minRows="24"
         id={newNote}

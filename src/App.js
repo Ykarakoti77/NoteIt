@@ -1,17 +1,21 @@
 import { Box } from "@mui/system";
-import { AuthProvider } from "./context/AuthContext";
-import { ContextProvider } from "./context/ContextProvider";
 import { Routing } from "./Routing/Routing";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { CssBaseline } from "@mui/material";
+import { DesignToken } from "./themes/DesignToken";
+import { useContext } from "react";
+import { UserContext } from "./context/ContextProvider";
 
 function App() {
+  const { mode } = useContext(UserContext);
+  const theme = createTheme(DesignToken(mode));
   return (
-    <AuthProvider>
-      <ContextProvider>
-        <Box>
-          <Routing /> 
-        </Box>
-      </ContextProvider>
-    </AuthProvider>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Box>
+        <Routing />
+      </Box>
+    </ThemeProvider>
   );
 }
 

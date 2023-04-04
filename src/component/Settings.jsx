@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { UserContext } from "../context/ContextProvider";
 
-
 export const Settings = () => {
   const navigate = useNavigate();
   const { logout } = useContext(AuthContext);
@@ -43,6 +42,9 @@ export const Settings = () => {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
+        sx={{
+          padding: "0px",
+        }}
         MenuListProps={{
           "aria-labelledby": "basic-button",
         }}
