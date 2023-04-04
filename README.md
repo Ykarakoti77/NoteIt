@@ -6,4 +6,4 @@ Features:
 2. Google authentication using Firebase
 3. Dark Mode 
 4. Favourites
-5. Searching the notes 
+5. Search
