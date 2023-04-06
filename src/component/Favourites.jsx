@@ -36,9 +36,9 @@ export const Favourites = () => {
     const tempNotes = [...filteredInitialNotes];
     tempNotes[ind].fav = !fv;
     setFilteredInitialNotes(tempNotes);
-    console.log(fv);
+    // console.log(fv);
   };
-  console.log("check");
+  // console.log("check");
   const style = { textDecoration: "none", color: "black" };
   const star = <StarIcon fontSize="small" />;
   const notstar = <StarBorderIcon fontSize="small" />;

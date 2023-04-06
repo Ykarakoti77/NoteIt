@@ -52,9 +52,9 @@ export const GreetingCard = () => {
     const formattedDate = dayOfWeek + ", " + dayOfMonth + " " + monthName;
     setDate(formattedDate);
   }, []);
-  console.log(currentUser?.displayName);
+  // console.log(currentUser?.displayName);
   return (
-    <Box sx={{color: "white", pl:"3rem", pt:'7rem', pb:'2rem' }}>
+    <Box sx={{ color: "white", pl: "3rem", pt: "7rem", pb: "2rem" }}>
       <Typography variant="h4">
         {" "}
         {greeting} {currentUser?.displayName}{" "}

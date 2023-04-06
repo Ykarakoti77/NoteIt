@@ -14,7 +14,7 @@ export const SearchBar = () => {
   let inputHandler = (e) => {
     var curtext = e.target.value.toLowerCase();
     setInputText(curtext);
-    console.log(curtext);
+    // console.log(curtext);
     const filteredData = initialNotes.filter((note) => {
       if (curtext === "") {
         return note;

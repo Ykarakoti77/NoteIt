@@ -15,7 +15,7 @@ export const ContextProvider = ({ children }) => {
   const [filteredInitialNotes, setFilteredInitialNotes] = useState([]);
 
   const getNotesList = async () => {
-    console.log();
+    // console.log();
     try {
       const data = await getDocs(notesCollectionRef);
       const allData = data.docs.map((doc) => ({
@@ -48,7 +48,7 @@ export const ContextProvider = ({ children }) => {
   };
   useEffect(() => {
     if (currentUser != null) {
-      console.log("ok");
+      // console.log("ok");
       getNotesList();
     }
   }, [currentUser]);

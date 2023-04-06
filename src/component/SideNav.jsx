@@ -55,7 +55,7 @@ export const SideNav = () => {
     const tempNotes = [...filteredInitialNotes];
     tempNotes[ind].fav = !fv;
     setFilteredInitialNotes(tempNotes);
-    console.log(fv);
+    // console.log(fv);
   };
 
   const handleDrawerOpen = () => {
